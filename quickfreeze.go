@@ -162,6 +162,12 @@ func (qf *QuickFreeze) CodeToSVG(code string) ([]byte, error) {
 	return generator.GenerateFromCode(code, qf.config.Language)
 }
 
+// CodeToSVGAuto generates SVG from source code with automatic language detection
+func (qf *QuickFreeze) CodeToSVGAuto(code string) ([]byte, error) {
+	generator := NewGenerator(qf.config)
+	return generator.GenerateFromCode(code, "")
+}
+
 // CodeToPNG generates PNG from source code
 func (qf *QuickFreeze) CodeToPNG(code string) ([]byte, error) {
 	generator := NewGenerator(qf.config)
@@ -181,6 +187,58 @@ func (qf *QuickFreeze) CodeToPNG(code string) ([]byte, error) {
 	}
 
 	return generator.ConvertToPNG(svgData, width, height)
+}
+
+// CodeToPNGAuto generates PNG from source code with automatic language detection
+func (qf *QuickFreeze) CodeToPNGAuto(code string) ([]byte, error) {
+	generator := NewGenerator(qf.config)
+	svgData, err := generator.GenerateFromCode(code, "")
+	if err != nil {
+		return nil, err
+	}
+
+	// Calculate dimensions for PNG
+	width := qf.config.Width
+	height := qf.config.Height
+	if width == 0 || height == 0 {
+		width = 800 * 4
+		height = 600 * 4
+	} else {
+		width *= 4
+		height *= 4
+	}
+
+	return generator.ConvertToPNG(svgData, width, height)
+}
+
+// DetectLanguage detects the programming language from code content
+func (qf *QuickFreeze) DetectLanguage(code string) string {
+	generator := NewGenerator(qf.config)
+	return generator.DetectLanguage(code)
+}
+
+// DetectLanguageFromFilename detects the programming language from filename
+func (qf *QuickFreeze) DetectLanguageFromFilename(filename string) string {
+	generator := NewGenerator(qf.config)
+	return generator.DetectLanguageFromFilename(filename)
+}
+
+// DetectLanguageFromFile detects language from both filename and content
+func (qf *QuickFreeze) DetectLanguageFromFile(filename, content string) string {
+	generator := NewGenerator(qf.config)
+	return generator.DetectLanguageFromFile(filename, content)
+}
+
+// GetSupportedLanguages returns a list of all supported languages
+func (qf *QuickFreeze) GetSupportedLanguages() []string {
+	generator := NewGenerator(qf.config)
+	return generator.GetSupportedLanguages()
+}
+
+// IsLanguageSupported checks if a language is supported
+func (qf *QuickFreeze) IsLanguageSupported(language string) bool {
+	generator := NewGenerator(qf.config)
+	return generator.IsLanguageSupported(language)
 }
 
 // FileToSVG generates SVG from a source code file

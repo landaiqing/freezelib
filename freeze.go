@@ -71,6 +71,11 @@ func (f *Freeze) GenerateFromCode(code, language string) ([]byte, error) {
 	return f.generator.GenerateFromCode(code, language)
 }
 
+// GenerateFromCodeAuto generates an SVG screenshot from source code with automatic language detection
+func (f *Freeze) GenerateFromCodeAuto(code string) ([]byte, error) {
+	return f.generator.GenerateFromCode(code, "")
+}
+
 // GenerateFromFile generates an SVG screenshot from a source code file
 func (f *Freeze) GenerateFromFile(filename string) ([]byte, error) {
 	return f.generator.GenerateFromFile(filename)
@@ -93,6 +98,28 @@ func (f *Freeze) GenerateFromANSI(ansiOutput string) ([]byte, error) {
 // GeneratePNGFromCode generates a PNG screenshot from source code
 func (f *Freeze) GeneratePNGFromCode(code, language string) ([]byte, error) {
 	svgData, err := f.generator.GenerateFromCode(code, language)
+	if err != nil {
+		return nil, err
+	}
+
+	// Calculate dimensions for PNG (use 4x scale for better quality)
+	width := f.config.Width
+	height := f.config.Height
+	if width == 0 || height == 0 {
+		// Use default dimensions with 4x scale
+		width = 800 * 4
+		height = 600 * 4
+	} else {
+		width *= 4
+		height *= 4
+	}
+
+	return f.generator.ConvertToPNG(svgData, width, height)
+}
+
+// GeneratePNGFromCodeAuto generates a PNG screenshot from source code with automatic language detection
+func (f *Freeze) GeneratePNGFromCodeAuto(code string) ([]byte, error) {
+	svgData, err := f.generator.GenerateFromCode(code, "")
 	if err != nil {
 		return nil, err
 	}
@@ -168,6 +195,24 @@ func (f *Freeze) SaveCodeToFile(code, language, filename string) error {
 		data, err = f.GeneratePNGFromCode(code, language)
 	} else {
 		data, err = f.GenerateFromCode(code, language)
+	}
+
+	if err != nil {
+		return err
+	}
+
+	return f.SaveToFile(data, filename)
+}
+
+// SaveCodeToFileAuto generates and saves a code screenshot to a file with automatic language detection
+func (f *Freeze) SaveCodeToFileAuto(code, filename string) error {
+	var data []byte
+	var err error
+
+	if isPNGFile(filename) {
+		data, err = f.GeneratePNGFromCodeAuto(code)
+	} else {
+		data, err = f.GenerateFromCodeAuto(code)
 	}
 
 	if err != nil {
@@ -296,6 +341,42 @@ func (f *Freeze) WithDimensions(width, height float64) *Freeze {
 	clone.config.SetDimensions(width, height)
 	clone.generator = NewGenerator(clone.config)
 	return clone
+}
+
+// DetectLanguage detects the programming language from code content
+func (f *Freeze) DetectLanguage(code string) string {
+	return f.generator.DetectLanguage(code)
+}
+
+// DetectLanguageFromFilename detects the programming language from filename
+func (f *Freeze) DetectLanguageFromFilename(filename string) string {
+	return f.generator.DetectLanguageFromFilename(filename)
+}
+
+// DetectLanguageFromFile detects language from both filename and content
+func (f *Freeze) DetectLanguageFromFile(filename, content string) string {
+	return f.generator.DetectLanguageFromFile(filename, content)
+}
+
+// GetSupportedLanguages returns a list of all supported languages
+func (f *Freeze) GetSupportedLanguages() []string {
+	return f.generator.GetSupportedLanguages()
+}
+
+// IsLanguageSupported checks if a language is supported
+func (f *Freeze) IsLanguageSupported(language string) bool {
+	return f.generator.IsLanguageSupported(language)
+}
+
+// SetLanguageDetector sets a custom language detector
+func (f *Freeze) SetLanguageDetector(detector *LanguageDetector) *Freeze {
+	f.generator.SetLanguageDetector(detector)
+	return f
+}
+
+// GetLanguageDetector returns the current language detector
+func (f *Freeze) GetLanguageDetector() *LanguageDetector {
+	return f.generator.GetLanguageDetector()
 }
 
 // isPNGFile checks if the filename has a PNG extension

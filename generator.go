@@ -12,7 +12,6 @@ import (
 
 	"github.com/alecthomas/chroma/v2"
 	formatter "github.com/alecthomas/chroma/v2/formatters/svg"
-	"github.com/alecthomas/chroma/v2/lexers"
 	"github.com/alecthomas/chroma/v2/styles"
 	"github.com/beevik/etree"
 	"github.com/charmbracelet/lipgloss"
@@ -28,7 +27,8 @@ const (
 
 // Generator handles the core screenshot generation logic
 type Generator struct {
-	config *Config
+	config           *Config
+	languageDetector *LanguageDetector
 }
 
 // NewGenerator creates a new generator with the given configuration
@@ -36,7 +36,10 @@ func NewGenerator(config *Config) *Generator {
 	if config == nil {
 		config = DefaultConfig()
 	}
-	return &Generator{config: config}
+	return &Generator{
+		config:           config,
+		languageDetector: NewLanguageDetector(),
+	}
 }
 
 // GenerateFromCode generates an SVG from source code
@@ -50,14 +53,8 @@ func (g *Generator) GenerateFromCode(code, language string) ([]byte, error) {
 		g.config.Language = language
 	}
 
-	// Get lexer for the language
-	var lexer chroma.Lexer
-	if g.config.Language != "" {
-		lexer = lexers.Get(g.config.Language)
-	}
-	if lexer == nil {
-		lexer = lexers.Analyse(code)
-	}
+	// Get lexer for the language using enhanced detection
+	lexer := g.languageDetector.GetLexer(g.config.Language, code)
 	if lexer == nil {
 		return nil, errors.New("could not determine language for syntax highlighting")
 	}
@@ -79,16 +76,48 @@ func (g *Generator) GenerateFromFile(filename string) ([]byte, error) {
 
 	code := string(content)
 
-	// Get lexer from filename
-	lexer := lexers.Get(filename)
-	if lexer == nil {
-		lexer = lexers.Analyse(code)
-	}
+	// Get lexer from filename and content using enhanced detection
+	lexer := g.languageDetector.GetLexerFromFile(filename, code)
 	if lexer == nil {
 		return nil, errors.New("could not determine language for syntax highlighting")
 	}
 
 	return g.generateSVG(code, lexer, false)
+}
+
+// DetectLanguage detects the programming language from code content
+func (g *Generator) DetectLanguage(code string) string {
+	return g.languageDetector.DetectLanguage(code)
+}
+
+// DetectLanguageFromFilename detects the programming language from filename
+func (g *Generator) DetectLanguageFromFilename(filename string) string {
+	return g.languageDetector.DetectLanguageFromFilename(filename)
+}
+
+// DetectLanguageFromFile detects language from both filename and content
+func (g *Generator) DetectLanguageFromFile(filename, content string) string {
+	return g.languageDetector.DetectLanguageFromFile(filename, content)
+}
+
+// GetSupportedLanguages returns a list of all supported languages
+func (g *Generator) GetSupportedLanguages() []string {
+	return g.languageDetector.GetSupportedLanguages()
+}
+
+// IsLanguageSupported checks if a language is supported
+func (g *Generator) IsLanguageSupported(language string) bool {
+	return g.languageDetector.IsLanguageSupported(language)
+}
+
+// SetLanguageDetector sets a custom language detector
+func (g *Generator) SetLanguageDetector(detector *LanguageDetector) {
+	g.languageDetector = detector
+}
+
+// GetLanguageDetector returns the current language detector
+func (g *Generator) GetLanguageDetector() *LanguageDetector {
+	return g.languageDetector
 }
 
 // GenerateFromANSI generates an SVG from ANSI terminal output

@@ -9,6 +9,7 @@ FreezeLib is a Go library for generating beautiful screenshots of code and termi
 ## Features
 
 - 🎨 **Syntax Highlighting**: Support for 100+ programming languages
+- 🔍 **Auto Language Detection**: Intelligent language detection from code content and filenames
 - 🖼️ **Multiple Output Formats**: Generate SVG and PNG images
 - 🎭 **Rich Themes**: Built-in themes including GitHub, Dracula, Monokai, and more
 - 🪟 **Window Controls**: macOS-style window decorations
@@ -60,6 +61,21 @@ func main() {
 }
 ```
 
+### Auto Language Detection
+
+FreezeLib can automatically detect the programming language:
+
+```go
+freeze := freezelib.New()
+
+// Automatic language detection from code content
+svgData, err := freeze.GenerateFromCodeAuto(code)
+
+// Detect language manually
+language := freeze.DetectLanguage(code)
+fmt.Printf("Detected language: %s", language)
+```
+
 ### QuickFreeze API
 
 For a more fluent experience, use the QuickFreeze API:
@@ -72,7 +88,7 @@ svgData, err := qf.WithTheme("dracula").
     WithWindow().
     WithShadow().
     WithLineNumbers().
-    CodeToSVG(code)
+    CodeToSVGAuto(code) // Auto-detect language
 ```
 
 ## API Reference
@@ -104,6 +120,10 @@ qf := freezelib.NewQuickFreezeWithPreset("terminal")
 ```go
 svgData, err := freeze.GenerateFromCode(code, "python")
 pngData, err := freeze.GeneratePNGFromCode(code, "python")
+
+// With automatic language detection
+svgData, err := freeze.GenerateFromCodeAuto(code)
+pngData, err := freeze.GeneratePNGFromCodeAuto(code)
 ```
 
 #### From File
@@ -168,6 +188,33 @@ presets := []string{
 }
 
 freeze := freezelib.NewWithPreset("dark")
+```
+
+### Language Detection
+
+FreezeLib provides powerful language detection capabilities:
+
+```go
+freeze := freezelib.New()
+
+// Detect language from code content
+language := freeze.DetectLanguage(code)
+
+// Detect from filename
+language = freeze.DetectLanguageFromFilename("script.py")
+
+// Combined detection (filename + content)
+language = freeze.DetectLanguageFromFile("script.py", code)
+
+// Check language support
+supported := freeze.IsLanguageSupported("go")
+
+// Get all supported languages
+languages := freeze.GetSupportedLanguages()
+
+// Custom language detector
+detector := freeze.GetLanguageDetector()
+detector.AddCustomMapping(".myext", "python")
 ```
 
 ### Chainable Methods
