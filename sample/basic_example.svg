@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="506.67" height="201.00" xmlns="http://www.w3.org/2000/svg">
+<rect width="506.67" height="201.00" fill="#ffffff" x="0.00px" y="0.00px"/>
+<g font-family="JetBrains Mono" font-size="14.00px" fill="#-00001" clip-path="url(#terminalMask)">
+<text x="20.00px" y="36.80px" xml:space="preserve"><tspan fill="#cf222e">package</tspan> <tspan fill="#1f2328">main</tspan>
+</text><text x="20.00px" y="53.60px" xml:space="preserve">
+</text><text x="20.00px" y="70.40px" xml:space="preserve"><tspan fill="#cf222e">import</tspan> <tspan fill="#0a3069">&quot;fmt&quot;</tspan>
+</text><text x="20.00px" y="87.20px" xml:space="preserve">
+</text><text x="20.00px" y="104.00px" xml:space="preserve"><tspan fill="#cf222e">func</tspan> <tspan fill="#6639ba">main</tspan><tspan fill="#1f2328">()</tspan> <tspan fill="#1f2328">{</tspan>
+</text><text x="20.00px" y="120.80px" xml:space="preserve">    <tspan fill="#1f2328">fmt</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#6639ba">Println</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&quot;Hello, World!&quot;</tspan><tspan fill="#1f2328">)</tspan>
+</text><text x="20.00px" y="137.60px" xml:space="preserve">    <tspan fill="#1f2328">fmt</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#6639ba">Println</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&quot;This is a beautiful code screenshot!&quot;</tspan><tspan fill="#1f2328">)</tspan>
+</text><text x="20.00px" y="154.40px" xml:space="preserve"><tspan fill="#1f2328">}</tspan></text>
+</g>
+</svg>

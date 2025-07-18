@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="436.90" height="152.14" xmlns="http://www.w3.org/2000/svg">
+<rect width="414.90" height="130.14" fill="#0d1117" rx="6.00" ry="6.00" filter="url(#shadow)" stroke="#30363d" stroke-width="1.00" x="10.00px" y="10.00px"/>
+<g font-family="JetBrains Mono" font-size="13.00px" fill="#e6edf3" clip-path="url(#terminalMask)">
+<text x="25.00px" y="40.60px" xml:space="preserve"><tspan xml:space="preserve" fill="#00FF00">✓ SUCCESS</tspan><tspan xml:space="preserve">: Build completed successfully</tspan></text><text x="25.00px" y="56.20px" xml:space="preserve"><tspan xml:space="preserve" fill="#FFFF00">⚠ WARNING</tspan><tspan xml:space="preserve">: Deprecated function used in main.go:42</tspan></text><text x="25.00px" y="71.80px" xml:space="preserve"><tspan xml:space="preserve" fill="#FF0000">✗ ERROR</tspan><tspan xml:space="preserve">: File not found: config.json</tspan></text><text x="25.00px" y="87.40px" xml:space="preserve"><tspan xml:space="preserve" fill="#00FFFF">INFO</tspan><tspan xml:space="preserve">: Starting server on port 8080</tspan></text><text x="25.00px" y="103.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#FF00FF">DEBUG</tspan><tspan xml:space="preserve">: Loading configuration from ~/.config/app</tspan></text>
+</g>
+<defs><filter id="shadow" filterUnits="userSpaceOnUse"><feGaussianBlur in="SourceAlpha" stdDeviation="15.00"/><feOffset result="offsetblur" dx="0.00" dy="5.00"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="507.00" height="218.00" xmlns="http://www.w3.org/2000/svg">
+<rect width="507.00" height="218.00" fill="#282a36" filter="url(#shadow)" x="0.00px" y="0.00px"/>
+<g font-family="Fira Code" font-size="14.00px" fill="#f8f8f2" clip-path="url(#terminalMask)">
+<text x="20.00px" y="51.80px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  1  </tspan><tspan fill="#8be9fd" font-style="italic">function</tspan> fibonacci(n) {
+</text><text x="20.00px" y="68.60px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  2  </tspan>    <tspan fill="#ff79c6">if</tspan> (n <tspan fill="#ff79c6">&lt;=</tspan> <tspan fill="#bd93f9">1</tspan>) <tspan fill="#ff79c6">return</tspan> n;
+</text><text x="20.00px" y="85.40px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  3  </tspan>    <tspan fill="#ff79c6">return</tspan> fibonacci(n <tspan fill="#ff79c6">-</tspan> <tspan fill="#bd93f9">1</tspan>) <tspan fill="#ff79c6">+</tspan> fibonacci(n <tspan fill="#ff79c6">-</tspan> <tspan fill="#bd93f9">2</tspan>);
+</text><text x="20.00px" y="102.20px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  4  </tspan>}
+</text><text x="20.00px" y="119.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  5  </tspan>
+</text><text x="20.00px" y="135.80px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  6  </tspan>console.log(<tspan fill="#f1fa8c">&apos;Fibonacci sequence:&apos;</tspan>);
+</text><text x="20.00px" y="152.60px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  7  </tspan><tspan fill="#ff79c6">for</tspan> (<tspan fill="#8be9fd" font-style="italic">let</tspan> i <tspan fill="#ff79c6">=</tspan> <tspan fill="#bd93f9">0</tspan>; i <tspan fill="#ff79c6">&lt;</tspan> <tspan fill="#bd93f9">10</tspan>; i<tspan fill="#ff79c6">++</tspan>) {
+</text><text x="20.00px" y="169.40px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  8  </tspan>    console.log(<tspan fill="#f1fa8c">&apos;F(&apos;</tspan> <tspan fill="#ff79c6">+</tspan> i <tspan fill="#ff79c6">+</tspan> <tspan fill="#f1fa8c">&apos;) = &apos;</tspan> <tspan fill="#ff79c6">+</tspan> fibonacci(i));
+</text><text x="20.00px" y="186.20px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  9  </tspan>}</text>
+</g>
+<svg x="0.00px" y="0.00px"><circle cx="13.50" cy="12.00" r="5.50" fill="#FF5A54"/><circle cx="32.50" cy="12.00" r="5.50" fill="#E6BF29"/><circle cx="51.50" cy="12.00" r="5.50" fill="#52C12B"/></svg><defs><filter id="shadow" filterUnits="userSpaceOnUse"><feGaussianBlur in="SourceAlpha" stdDeviation="20.00"/><feOffset result="offsetblur" dx="0.00" dy="10.00"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>

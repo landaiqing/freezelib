@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="463.33" height="274.00" xmlns="http://www.w3.org/2000/svg">
+<rect width="431.33" height="242.00" fill="#ffffff" rx="8.00" ry="8.00" filter="url(#shadow)" stroke="#d1d5da" stroke-width="1.00" x="15.00px" y="15.00px"/>
+<g font-family="SF Mono" font-size="14.00px" fill="#-00001" clip-path="url(#terminalMask)">
+<text x="40.00px" y="56.80px" xml:space="preserve"><tspan fill="#cf222e">const</tspan> <tspan fill="#1f2328">express</tspan> <tspan fill="#0550ae">=</tspan> <tspan fill="#1f2328">require</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&apos;express&apos;</tspan><tspan fill="#1f2328">);</tspan>
+</text><text x="40.00px" y="73.60px" xml:space="preserve"><tspan fill="#cf222e">const</tspan> <tspan fill="#1f2328">app</tspan> <tspan fill="#0550ae">=</tspan> <tspan fill="#1f2328">express</tspan><tspan fill="#1f2328">();</tspan>
+</text><text x="40.00px" y="90.40px" xml:space="preserve">
+</text><text x="40.00px" y="107.20px" xml:space="preserve"><tspan fill="#1f2328">app</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">get</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&apos;/&apos;</tspan><tspan fill="#1f2328">,</tspan> <tspan fill="#1f2328">(</tspan><tspan fill="#1f2328">req</tspan><tspan fill="#1f2328">,</tspan> <tspan fill="#1f2328">res</tspan><tspan fill="#1f2328">)</tspan> <tspan fill="#1f2328">=&gt;</tspan> <tspan fill="#1f2328">{</tspan>
+</text><text x="40.00px" y="124.00px" xml:space="preserve">  <tspan fill="#1f2328">res</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">json</tspan><tspan fill="#1f2328">({</tspan> <tspan fill="#1f2328">message</tspan><tspan fill="#0550ae">:</tspan> <tspan fill="#0a3069">&apos;Hello, World!&apos;</tspan> <tspan fill="#1f2328">});</tspan>
+</text><text x="40.00px" y="140.80px" xml:space="preserve"><tspan fill="#1f2328">});</tspan>
+</text><text x="40.00px" y="157.60px" xml:space="preserve">
+</text><text x="40.00px" y="174.40px" xml:space="preserve"><tspan fill="#1f2328">app</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">listen</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0550ae">3000</tspan><tspan fill="#1f2328">,</tspan> <tspan fill="#1f2328">()</tspan> <tspan fill="#1f2328">=&gt;</tspan> <tspan fill="#1f2328">{</tspan>
+</text><text x="40.00px" y="191.20px" xml:space="preserve">  <tspan fill="#1f2328">console</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">log</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&apos;Server running on port 3000&apos;</tspan><tspan fill="#1f2328">);</tspan>
+</text><text x="40.00px" y="208.00px" xml:space="preserve"><tspan fill="#1f2328">});</tspan></text>
+</g>
+<defs><filter id="shadow" filterUnits="userSpaceOnUse"><feGaussianBlur in="SourceAlpha" stdDeviation="20.00"/><feOffset result="offsetblur" dx="0.00" dy="8.00"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>

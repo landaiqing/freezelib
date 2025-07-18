@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="553.57" height="414.29" xmlns="http://www.w3.org/2000/svg">
+<rect width="521.57" height="382.29" fill="#272822" rx="10.00" ry="10.00" filter="url(#shadow)" stroke="#444444" stroke-width="1.00" x="15.00px" y="15.00px"/>
+<g font-family="Cascadia Code" font-size="15.00px" fill="#f8f8f2" clip-path="url(#terminalMask)">
+<text x="40.00px" y="73.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  1  </tspan><tspan fill="#75715e">#include</tspan> <tspan fill="#75715e">&lt;iostream&gt;</tspan><tspan fill="#75715e">
+</tspan></text><text x="40.00px" y="91.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  2  </tspan><tspan fill="#75715e">#include</tspan> <tspan fill="#75715e">&lt;vector&gt;</tspan><tspan fill="#75715e">
+</tspan></text><text x="40.00px" y="109.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  3  </tspan><tspan fill="#75715e">#include</tspan> <tspan fill="#75715e">&lt;algorithm&gt;</tspan><tspan fill="#75715e">
+</tspan></text><text x="40.00px" y="127.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  4  </tspan><tspan fill="#75715e"/>
+</text><text x="40.00px" y="145.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  5  </tspan><tspan fill="#66d9ef">int</tspan> <tspan fill="#a6e22e">main</tspan>() {
+</text><text x="40.00px" y="163.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  6  </tspan>    std<tspan fill="#f92672">::</tspan>vector<tspan fill="#f92672">&lt;</tspan><tspan fill="#66d9ef">int</tspan><tspan fill="#f92672">&gt;</tspan> numbers <tspan fill="#f92672">=</tspan> {<tspan fill="#ae81ff">5</tspan>, <tspan fill="#ae81ff">2</tspan>, <tspan fill="#ae81ff">8</tspan>, <tspan fill="#ae81ff">1</tspan>, <tspan fill="#ae81ff">9</tspan>};
+</text><text x="40.00px" y="181.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  7  </tspan>    
+</text><text x="40.00px" y="199.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  8  </tspan>    std<tspan fill="#f92672">::</tspan>sort(numbers.begin(), numbers.end());
+</text><text x="40.00px" y="217.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f">  9  </tspan>    
+</text><text x="40.00px" y="235.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 10  </tspan>    std<tspan fill="#f92672">::</tspan>cout <tspan fill="#f92672">&lt;&lt;</tspan> <tspan fill="#e6db74">&quot;Sorted numbers: &quot;</tspan>;
+</text><text x="40.00px" y="253.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 11  </tspan>    <tspan fill="#66d9ef">for</tspan> (<tspan fill="#66d9ef">const</tspan> <tspan fill="#66d9ef">auto</tspan><tspan fill="#f92672">&amp;</tspan> num : numbers) {
+</text><text x="40.00px" y="271.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 12  </tspan>        std<tspan fill="#f92672">::</tspan>cout <tspan fill="#f92672">&lt;&lt;</tspan> num <tspan fill="#f92672">&lt;&lt;</tspan> <tspan fill="#e6db74">&quot; &quot;</tspan>;
+</text><text x="40.00px" y="289.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 13  </tspan>    }
+</text><text x="40.00px" y="307.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 14  </tspan>    std<tspan fill="#f92672">::</tspan>cout <tspan fill="#f92672">&lt;&lt;</tspan> std<tspan fill="#f92672">::</tspan>endl;
+</text><text x="40.00px" y="325.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 15  </tspan>    
+</text><text x="40.00px" y="343.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 16  </tspan>    <tspan fill="#66d9ef">return</tspan> <tspan fill="#ae81ff">0</tspan>;
+</text><text x="40.00px" y="361.00px" xml:space="preserve"><tspan xml:space="preserve" fill="#7f7f7f"> 17  </tspan>}</text>
+</g>
+<svg x="15.00px" y="15.00px"><circle cx="13.50" cy="12.00" r="5.50" fill="#FF5A54"/><circle cx="32.50" cy="12.00" r="5.50" fill="#E6BF29"/><circle cx="51.50" cy="12.00" r="5.50" fill="#52C12B"/></svg><defs><filter id="shadow" filterUnits="userSpaceOnUse"><feGaussianBlur in="SourceAlpha" stdDeviation="20.00"/><feOffset result="offsetblur" dx="0.00" dy="10.00"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>

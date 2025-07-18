@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="388.57" height="226.29" xmlns="http://www.w3.org/2000/svg">
+<rect width="364.57" height="202.29" fill="#272822" stroke="#00ff00" stroke-width="2.00" x="10.00px" y="10.00px"/>
+<g font-family="Courier New" font-size="12.00px" fill="#f8f8f2" clip-path="url(#terminalMask)">
+<text x="30.00px" y="44.40px" xml:space="preserve"><tspan fill="#66d9ef">const</tspan> <tspan fill="#a6e22e">express</tspan> <tspan fill="#f92672">=</tspan> <tspan fill="#a6e22e">require</tspan>(<tspan fill="#e6db74">&apos;express&apos;</tspan>);
+</text><text x="30.00px" y="58.80px" xml:space="preserve"><tspan fill="#66d9ef">const</tspan> <tspan fill="#a6e22e">app</tspan> <tspan fill="#f92672">=</tspan> <tspan fill="#a6e22e">express</tspan>();
+</text><text x="30.00px" y="73.20px" xml:space="preserve">
+</text><text x="30.00px" y="87.60px" xml:space="preserve"><tspan fill="#a6e22e">app</tspan>.<tspan fill="#a6e22e">get</tspan>(<tspan fill="#e6db74">&apos;/&apos;</tspan>, (<tspan fill="#a6e22e">req</tspan>, <tspan fill="#a6e22e">res</tspan>) =&gt; {
+</text><text x="30.00px" y="102.00px" xml:space="preserve">  <tspan fill="#a6e22e">res</tspan>.<tspan fill="#a6e22e">json</tspan>({ <tspan fill="#a6e22e">message</tspan><tspan fill="#f92672">:</tspan> <tspan fill="#e6db74">&apos;Hello, World!&apos;</tspan> });
+</text><text x="30.00px" y="116.40px" xml:space="preserve">});
+</text><text x="30.00px" y="130.80px" xml:space="preserve">
+</text><text x="30.00px" y="145.20px" xml:space="preserve"><tspan fill="#a6e22e">app</tspan>.<tspan fill="#a6e22e">listen</tspan>(<tspan fill="#ae81ff">3000</tspan>, () =&gt; {
+</text><text x="30.00px" y="159.60px" xml:space="preserve">  <tspan fill="#a6e22e">console</tspan>.<tspan fill="#a6e22e">log</tspan>(<tspan fill="#e6db74">&apos;Server running on port 3000&apos;</tspan>);
+</text><text x="30.00px" y="174.00px" xml:space="preserve">});</text>
+</g>
+</svg>

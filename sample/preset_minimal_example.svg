@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="403.33" height="214.00" xmlns="http://www.w3.org/2000/svg">
+<rect width="403.33" height="214.00" fill="#ffffff" x="0.00px" y="0.00px"/>
+<g font-family="JetBrains Mono" font-size="14.00px" fill="#-00001" clip-path="url(#terminalMask)">
+<text x="10.00px" y="26.80px" xml:space="preserve"><tspan fill="#cf222e">const</tspan> <tspan fill="#1f2328">express</tspan> <tspan fill="#0550ae">=</tspan> <tspan fill="#1f2328">require</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&apos;express&apos;</tspan><tspan fill="#1f2328">);</tspan>
+</text><text x="10.00px" y="43.60px" xml:space="preserve"><tspan fill="#cf222e">const</tspan> <tspan fill="#1f2328">app</tspan> <tspan fill="#0550ae">=</tspan> <tspan fill="#1f2328">express</tspan><tspan fill="#1f2328">();</tspan>
+</text><text x="10.00px" y="60.40px" xml:space="preserve">
+</text><text x="10.00px" y="77.20px" xml:space="preserve"><tspan fill="#1f2328">app</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">get</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&apos;/&apos;</tspan><tspan fill="#1f2328">,</tspan> <tspan fill="#1f2328">(</tspan><tspan fill="#1f2328">req</tspan><tspan fill="#1f2328">,</tspan> <tspan fill="#1f2328">res</tspan><tspan fill="#1f2328">)</tspan> <tspan fill="#1f2328">=&gt;</tspan> <tspan fill="#1f2328">{</tspan>
+</text><text x="10.00px" y="94.00px" xml:space="preserve">  <tspan fill="#1f2328">res</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">json</tspan><tspan fill="#1f2328">({</tspan> <tspan fill="#1f2328">message</tspan><tspan fill="#0550ae">:</tspan> <tspan fill="#0a3069">&apos;Hello, World!&apos;</tspan> <tspan fill="#1f2328">});</tspan>
+</text><text x="10.00px" y="110.80px" xml:space="preserve"><tspan fill="#1f2328">});</tspan>
+</text><text x="10.00px" y="127.60px" xml:space="preserve">
+</text><text x="10.00px" y="144.40px" xml:space="preserve"><tspan fill="#1f2328">app</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">listen</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0550ae">3000</tspan><tspan fill="#1f2328">,</tspan> <tspan fill="#1f2328">()</tspan> <tspan fill="#1f2328">=&gt;</tspan> <tspan fill="#1f2328">{</tspan>
+</text><text x="10.00px" y="161.20px" xml:space="preserve">  <tspan fill="#1f2328">console</tspan><tspan fill="#1f2328">.</tspan><tspan fill="#1f2328">log</tspan><tspan fill="#1f2328">(</tspan><tspan fill="#0a3069">&apos;Server running on port 3000&apos;</tspan><tspan fill="#1f2328">);</tspan>
+</text><text x="10.00px" y="178.00px" xml:space="preserve"><tspan fill="#1f2328">});</tspan></text>
+</g>
+</svg>

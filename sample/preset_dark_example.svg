@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="463.33" height="274.00" xmlns="http://www.w3.org/2000/svg">
+<rect width="431.33" height="242.00" fill="#282a36" rx="8.00" ry="8.00" filter="url(#shadow)" stroke="#3c3c3c" stroke-width="1.00" x="15.00px" y="15.00px"/>
+<g font-family="Fira Code" font-size="14.00px" fill="#f8f8f2" clip-path="url(#terminalMask)">
+<text x="40.00px" y="56.80px" xml:space="preserve"><tspan fill="#ff79c6">const</tspan> express <tspan fill="#ff79c6">=</tspan> require(<tspan fill="#f1fa8c">&apos;express&apos;</tspan>);
+</text><text x="40.00px" y="73.60px" xml:space="preserve"><tspan fill="#ff79c6">const</tspan> app <tspan fill="#ff79c6">=</tspan> express();
+</text><text x="40.00px" y="90.40px" xml:space="preserve">
+</text><text x="40.00px" y="107.20px" xml:space="preserve">app.get(<tspan fill="#f1fa8c">&apos;/&apos;</tspan>, (req, res) =&gt; {
+</text><text x="40.00px" y="124.00px" xml:space="preserve">  res.json({ message<tspan fill="#ff79c6">:</tspan> <tspan fill="#f1fa8c">&apos;Hello, World!&apos;</tspan> });
+</text><text x="40.00px" y="140.80px" xml:space="preserve">});
+</text><text x="40.00px" y="157.60px" xml:space="preserve">
+</text><text x="40.00px" y="174.40px" xml:space="preserve">app.listen(<tspan fill="#bd93f9">3000</tspan>, () =&gt; {
+</text><text x="40.00px" y="191.20px" xml:space="preserve">  console.log(<tspan fill="#f1fa8c">&apos;Server running on port 3000&apos;</tspan>);
+</text><text x="40.00px" y="208.00px" xml:space="preserve">});</text>
+</g>
+<defs><filter id="shadow" filterUnits="userSpaceOnUse"><feGaussianBlur in="SourceAlpha" stdDeviation="20.00"/><feOffset result="offsetblur" dx="0.00" dy="8.00"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs></svg>
