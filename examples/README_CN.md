@@ -42,6 +42,20 @@
 - 自动化工作流
 - 批量操作
 
+### [08-auto-language-detection/](08-auto-language-detection/) - 自动语言检测
+- 智能语言检测
+- 内容分析检测
+- 文件名检测
+- 自定义检测器配置
+- 检测 API 使用
+
+### [09-supported-options/](09-supported-options/) - 支持选项列表
+- 获取所有支持的语言列表
+- 获取所有支持的主题列表
+- 获取所有可用的预设列表
+- 验证语言、主题、预设支持
+- 简单高效的 API
+
 ## 🚀 快速开始
 
 运行所有示例：
@@ -54,53 +68,20 @@ go run run_all_examples.go
 运行特定分类：
 
 ```bash
+# 基础示例
 cd examples/01-basic
+go run main.go
+
+# 自动语言检测
+cd examples/08-auto-language-detection
+go run main.go
+
+# 支持选项列表
+cd examples/09-supported-options
 go run main.go
 ```
 
-## 📊 输出格式
 
-每个示例分类都演示：
-- **SVG**: 矢量格式，完美适用于网页和文档
-- **PNG**: 栅格格式，适合演示和社交媒体
-- **质量对比**: 不同设置及其效果
-
-## 🎨 展示的视觉功能
-
-- **语法高亮**: 100+ 种编程语言
-- **主题**: 浅色、深色和自定义主题
-- **窗口装饰**: macOS 风格窗口控件
-- **行号**: 可选行号显示
-- **阴影和边框**: 视觉增强效果
-- **自定义字体**: 排版选项
-- **ANSI 颜色**: 终端输出渲染
-- **响应式尺寸**: 自适应尺寸
-
-## 📝 代码示例包括
-
-- **Web 开发**: HTML, CSS, JavaScript, TypeScript
-- **后端**: Go, Python, Java, C#, Rust
-- **移动端**: Swift, Kotlin, Dart
-- **DevOps**: Docker, YAML, Shell 脚本
-- **数据**: SQL, JSON, CSV 处理
-- **文档**: Markdown, 配置文件
-
-## 🔧 配置示例
-
-每个分类都包含以下示例：
-- 基本配置
-- 高级自定义
-- 性能优化
-- 错误处理
-- 最佳实践
-
-## 📖 学习路径
-
-1. **从 [01-basic/](01-basic/) 开始** - 学习基本概念
-2. **探索 [02-formats/](02-formats/)** - 了解输出选项
-3. **尝试 [03-themes/](03-themes/)** - 发现视觉样式
-4. **查看 [04-languages/](04-languages/)** - 了解语言支持
-5. **高级主题** - 深入专业用例
 
 ## 🤝 贡献示例
 

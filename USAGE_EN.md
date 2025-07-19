@@ -2,13 +2,17 @@
 
 **Language / 语言**: [English](USAGE_EN.md) | [中文](USAGE.md)
 
-**Main Documentation / 主要文档**: [README (English)](README.md) | [README (中文)](README_CN.md)
+FreezeLib is a Go library for generating beautiful code screenshots.
 
-FreezeLib is a Go library refactored from Charm's freeze CLI tool for generating beautiful code screenshots.
+## Installation
 
-## 🚀 Quick Start
+```bash
+go get github.com/landaiqing/freezelib
+```
 
-### Basic Usage
+## Basic Usage
+
+### 1. Simplest Example
 
 ```go
 package main
@@ -19,10 +23,10 @@ import (
 )
 
 func main() {
-	// Create freeze instance
+	// Create instance
 	freeze := freezelib.New()
 
-	// Code to screenshot
+	// Code content
 	code := `package main
 
 import "fmt"
@@ -37,155 +41,107 @@ func main() {
 		panic(err)
 	}
 
-	// Save to file
+	// Save file
 	os.WriteFile("hello.svg", svgData, 0644)
 }
 ```
 
-### Chainable API
+### 2. Generate from File
 
 ```go
-// Use QuickFreeze for method chaining
-qf := freezelib.NewQuickFreeze()
-
-svgData, err := qf.WithTheme("dracula").
-    WithFont("Fira Code", 14).
-    WithWindow().
-    WithShadow().
-    WithLineNumbers().
-    WithLanguage("javascript").
-    CodeToSVG(code)
-```
-
-## 📋 Main Features
-
-### 1. Multiple Input Methods
-
-```go
-// Generate from code string
-svgData, err := freeze.GenerateFromCode(code, "python")
-
-// Generate from file
+// Generate directly from file
 svgData, err := freeze.GenerateFromFile("main.go")
-
-// Generate from ANSI terminal output
-ansiOutput := "\033[32m✓ SUCCESS\033[0m: Build completed"
-svgData, err := freeze.GenerateFromANSI(ansiOutput)
-
-// Generate from Reader
-svgData, err := freeze.GenerateFromReader(reader, "javascript")
+if err != nil {
+    panic(err)
+}
+os.WriteFile("main.svg", svgData, 0644)
 ```
 
-### 2. Multiple Output Formats
+### 3. Generate PNG Format
 
 ```go
-// Generate SVG
-svgData, err := freeze.GenerateFromCode(code, "go")
-
-// Generate PNG
+// Generate PNG instead of SVG
 pngData, err := freeze.GeneratePNGFromCode(code, "go")
-
-// Save directly to file
-err := freeze.SaveCodeToFile(code, "go", "output.svg")
-err := freeze.SaveCodeToFile(code, "go", "output.png") // Auto-detect format
+if err != nil {
+    panic(err)
+}
+os.WriteFile("hello.png", pngData, 0644)
 ```
 
-### 3. Preset Configurations
+### 4. Save Directly to File
 
 ```go
-// Use preset configurations
+// One step: generate and save
+err := freeze.SaveCodeToFile(code, "go", "output.svg")
+if err != nil {
+    panic(err)
+}
+
+// Auto-detect format (by file extension)
+err = freeze.SaveCodeToFile(code, "go", "output.png")
+```
+
+## Using Preset Styles
+
+```go
+// Use preset configurations for quick start
 freeze := freezelib.NewWithPreset("dark")        // Dark theme
 freeze := freezelib.NewWithPreset("terminal")    // Terminal style
 freeze := freezelib.NewWithPreset("presentation") // Presentation style
 
-// Available presets
-presets := []string{
-    "base",         // Basic style
-    "full",         // macOS style
-    "terminal",     // Terminal optimized
-    "presentation", // Presentation optimized
-    "minimal",      // Minimal style
-    "dark",         // Dark theme
-    "light",        // Light theme
-    "retro",        // Retro style
-    "neon",         // Neon style
-    "compact",      // Compact style
-}
+// View all available presets
+presets := freeze.GetAvailablePresets()
+// Returns: ["base", "compact", "dark", "full", "light", "minimal", "neon", "presentation", "retro", "terminal"]
 ```
 
-### 4. Custom Configuration
+## Custom Styling
+
+### Basic Settings
 
 ```go
-config := freezelib.DefaultConfig()
+freeze := freezelib.New().
+    WithTheme("github-dark").           // Set theme
+    WithFont("JetBrains Mono", 14).     // Set font and size
+    WithBackground("#1e1e1e").          // Set background color
+    WithPadding(20)                     // Set padding
 
-// Basic settings
-config.SetTheme("github-dark")
-config.SetFont("JetBrains Mono", 14)
-config.SetBackground("#1e1e1e")
-config.SetLanguage("python")
-
-// Layout settings
-config.SetPadding(20)           // All sides
-config.SetPadding(20, 40)       // Vertical, horizontal
-config.SetPadding(20, 40, 20, 40) // Top, right, bottom, left
-config.SetMargin(15)
-config.SetDimensions(800, 600)
-
-// Decorative effects
-config.SetWindow(true)          // Window controls
-config.SetLineNumbers(true)     // Line numbers
-config.SetShadow(20, 0, 10)     // Shadow: blur, X offset, Y offset
-config.SetBorder(1, 8, "#333")  // Border: width, radius, color
-
-// Line range (1-indexed)
-config.SetLines(10, 20)         // Only capture lines 10-20
-
-freeze := freezelib.NewWithConfig(config)
+svgData, err := freeze.GenerateFromCode(code, "go")
 ```
 
-## 🎨 Supported Themes
-
-- `github` / `github-dark`
-- `dracula`
-- `monokai`
-- `solarized-dark` / `solarized-light`
-- `nord`
-- `one-dark`
-- `material`
-- `vim`
-- And more...
-
-## 💻 Supported Languages
-
-Supports 100+ programming languages including:
-- Go, Rust, Python, JavaScript, TypeScript
-- C, C++, C#, Java, Kotlin, Swift
-- HTML, CSS, SCSS, JSON, YAML, XML
-- Shell, PowerShell, Dockerfile
-- SQL, GraphQL, Markdown
-- And more...
-
-## 🔧 Advanced Usage
-
-### Batch Processing
+### Add Decorative Effects
 
 ```go
-files := []string{"main.go", "config.go", "utils.go"}
+freeze := freezelib.New().
+    WithTheme("dracula").
+    WithWindow(true).                   // Add window controls
+    WithLineNumbers(true).              // Show line numbers
+    WithShadow(20, 0, 10)               // Add shadow
 
-for _, file := range files {
-    svgData, err := freeze.GenerateFromFile(file)
-    if err != nil {
-        continue
-    }
-    
-    outputFile := strings.TrimSuffix(file, ".go") + ".svg"
-    os.WriteFile(outputFile, svgData, 0644)
-}
+svgData, err := freeze.GenerateFromCode(code, "python")
 ```
 
-### Terminal Output Screenshots
+## View Supported Options
 
 ```go
+freeze := freezelib.New()
+
+// View all supported languages (270+)
+languages := freeze.GetSupportedLanguages()
+fmt.Printf("Supports %d languages\n", len(languages))
+
+// View all supported themes (67+)
+themes := freeze.GetSupportedThemes()
+fmt.Printf("Supports %d themes\n", len(themes))
+
+// View all available presets (10)
+presets := freeze.GetAvailablePresets()
+fmt.Printf("Available presets: %v\n", presets)
+```
+
+## Terminal Output Screenshots
+
+```go
+// Screenshot terminal output (supports ANSI colors)
 freeze := freezelib.NewWithPreset("terminal")
 
 ansiOutput := "\033[32m✓ Tests passed\033[0m\n" +
@@ -193,72 +149,86 @@ ansiOutput := "\033[32m✓ Tests passed\033[0m\n" +
               "\033[33m⚠ Warning: deprecated API\033[0m"
 
 svgData, err := freeze.GenerateFromANSI(ansiOutput)
+if err != nil {
+    panic(err)
+}
+os.WriteFile("terminal.svg", svgData, 0644)
 ```
 
-### Method Chaining
+## Batch Processing Files
 
 ```go
-freeze := freezelib.New().
-    WithTheme("monokai").
-    WithFont("Cascadia Code", 15).
-    WithWindow(true).
-    WithShadow(20, 0, 10).
-    WithLineNumbers(true)
+freeze := freezelib.NewWithPreset("dark")
+files := []string{"main.go", "config.go", "utils.go"}
 
-svgData, err := freeze.GenerateFromCode(code, "rust")
+for _, file := range files {
+    err := freeze.SaveFileToFile(file, file+".svg")
+    if err != nil {
+        fmt.Printf("Failed to process %s: %v\n", file, err)
+        continue
+    }
+    fmt.Printf("Generated: %s.svg\n", file)
+}
 ```
 
-## 📊 Performance Optimization Tips
+## Auto Language Detection
 
-1. **Reuse instances**: Create one `Freeze` instance and reuse it
-2. **Choose appropriate formats**: SVG for web, PNG for presentations
-3. **Set specific dimensions**: Specifying dimensions improves performance
-4. **Batch operations**: Process multiple files in a single session
+```go
+freeze := freezelib.New()
 
-## 🐛 Error Handling
+// Don't specify language, auto-detect
+code := `function hello() {
+    console.log("Hello, World!");
+}`
+
+// Auto-detected as JavaScript
+svgData, err := freeze.GenerateFromCodeAuto(code)
+if err != nil {
+    panic(err)
+}
+os.WriteFile("auto.svg", svgData, 0644)
+```
+
+## Error Handling
 
 ```go
 svgData, err := freeze.GenerateFromCode(code, "go")
 if err != nil {
-    switch {
-    case strings.Contains(err.Error(), "language"):
-        // Language detection failed
-    case strings.Contains(err.Error(), "config"):
-        // Configuration error
-    default:
-        // Other errors
-    }
+    fmt.Printf("Generation failed: %v\n", err)
+    return
 }
+
+// Save file
+err = os.WriteFile("output.svg", svgData, 0644)
+if err != nil {
+    fmt.Printf("Save failed: %v\n", err)
+    return
+}
+
+fmt.Println("Generated successfully!")
 ```
 
-## 📁 Project Structure
+## Common Themes
 
-```
-freezelib/
-├── freeze.go          # Main API interface
-├── config.go          # Configuration structs
-├── generator.go       # Core generation logic
-├── quickfreeze.go     # Simplified API
-├── presets.go         # Preset configurations
-├── ansi.go           # ANSI processing
-├── svg/              # SVG processing
-├── font/             # Font processing
-├── example/          # Usage examples
-└── README.md         # Detailed documentation
-```
+- `github` - GitHub light theme
+- `github-dark` - GitHub dark theme
+- `dracula` - Dracula theme
+- `monokai` - Monokai theme
+- `nord` - Nord theme
 
-## 🤝 Differences from Original freeze
+## Common Languages
 
-| Feature | Original freeze | FreezeLib |
-|---------|----------------|-----------|
-| Usage | CLI tool | Go library |
-| Integration | Command line calls | Direct import |
-| Configuration | CLI args/config files | Go structs |
-| Extensibility | Limited | Highly extensible |
-| Performance | Process startup overhead | In-memory processing |
-
-## 📝 Example Code
-
-Check the complete examples in the `examples` directory:
-
-This will generate multiple example SVG files showcasing various features of the library.
+- `go` - Go language
+- `python` - Python
+- `javascript` - JavaScript
+- `typescript` - TypeScript
+- `java` - Java
+- `rust` - Rust
+- `c` - C language
+- `cpp` - C++
+- `html` - HTML
+- `css` - CSS
+- `json` - JSON
+- `yaml` - YAML
+- `markdown` - Markdown
+- `bash` - Shell script

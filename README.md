@@ -8,15 +8,16 @@ FreezeLib is a Go library for generating beautiful screenshots of code and termi
 
 ## Features
 
-- 🎨 **Syntax Highlighting**: Support for 100+ programming languages
+- 🎨 **Syntax Highlighting**: Support for 270+ programming languages
 - 🔍 **Auto Language Detection**: Intelligent language detection from code content and filenames
+- 📋 **Simple Lists**: Easy access to all available languages, themes, and presets
 - 🖼️ **Multiple Output Formats**: Generate SVG and PNG images
-- 🎭 **Rich Themes**: Built-in themes including GitHub, Dracula, Monokai, and more
+- 🎭 **Rich Themes**: 67+ built-in themes including GitHub, Dracula, Monokai, and more
 - 🪟 **Window Controls**: macOS-style window decorations
 - 📏 **Line Numbers**: Optional line numbering
 - 🌈 **ANSI Support**: Render colored terminal output
 - ⚡ **Easy API**: Simple and chainable API design
-- 🎯 **Presets**: Pre-configured styles for common use cases
+- 🎯 **Presets**: 10 pre-configured styles for common use cases
 - 🔧 **Highly Customizable**: Fine-tune every aspect of the output
 
 ## Installation
@@ -217,6 +218,29 @@ detector := freeze.GetLanguageDetector()
 detector.AddCustomMapping(".myext", "python")
 ```
 
+### Available Options
+
+Get lists of all available options:
+
+```go
+freeze := freezelib.New()
+
+// Get all available options (sorted lists)
+languages := freeze.GetSupportedLanguages()  // 270+ languages
+themes := freeze.GetSupportedThemes()        // 67+ themes
+presets := freeze.GetAvailablePresets()      // 10 presets
+
+// Test support
+isSupported := freeze.IsLanguageSupported("go")
+isSupported = freeze.IsThemeSupported("github")
+isValid := freezelib.IsValidPreset("dark")
+
+// Global functions also available
+languages = freezelib.GetSupportedLanguages()
+themes = freezelib.GetSupportedThemes()
+presets = freezelib.GetAvailablePresets()
+```
+
 ### Chainable Methods
 
 Both `Freeze` and `QuickFreeze` support method chaining:
@@ -282,27 +306,41 @@ for _, file := range files {
 
 ## Supported Languages
 
-FreezeLib supports syntax highlighting for 100+ programming languages including:
+FreezeLib supports syntax highlighting for 270+ programming languages including:
 
-- Go, Rust, Python, JavaScript, TypeScript
-- C, C++, C#, Java, Kotlin, Swift
-- HTML, CSS, SCSS, JSON, YAML, XML
-- Shell, PowerShell, Dockerfile
-- SQL, GraphQL, Markdown
-- And many more...
+### Popular Languages
+- **System**: Go, Rust, C, C++, Zig, D, Nim, V
+- **Web**: JavaScript, TypeScript, HTML, CSS, SCSS, PHP
+- **Enterprise**: Java, C#, Kotlin, Scala, Swift
+- **Scripting**: Python, Ruby, Perl, Lua, Bash, PowerShell
+- **Data**: JSON, YAML, TOML, XML, SQL, GraphQL
+
+### Categories
+- **Popular** (30): Most commonly used languages
+- **Web** (15): Frontend and backend web technologies
+- **System** (13): Low-level and systems programming
+- **Scripting** (12): Automation and scripting languages
+- **Data** (11): Configuration and data formats
+- **And many more**: 270+ total languages supported
 
 ## Supported Themes
 
-Popular themes include:
-- `github` / `github-dark`
-- `dracula`
-- `monokai`
-- `solarized-dark` / `solarized-light`
-- `nord`
-- `one-dark`
-- `material`
-- `vim`
-- And many more...
+FreezeLib includes 67+ syntax highlighting themes:
+
+### Popular Themes
+- **GitHub**: `github`, `github-dark`
+- **Modern**: `dracula`, `monokai`, `nord`, `one-dark`
+- **Classic**: `solarized-dark`, `solarized-light`, `material`, `vim`
+- **Colorful**: `colorful`, `friendly`, `fruity`, `rainbow_dash`
+
+### Categories
+- **Popular** (30): Most commonly used themes
+- **Dark** (10): Dark color schemes for low-light environments
+- **Light** (14): Light color schemes for bright environments
+- **And many more**: 67+ total themes available
+
+### Simple and Efficient
+All lists are sorted alphabetically for easy browsing and selection.
 
 ## Error Handling
 

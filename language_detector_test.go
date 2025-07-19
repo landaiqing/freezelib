@@ -241,3 +241,90 @@ func TestLanguageSupport(t *testing.T) {
 		t.Error("Nonexistent language should not be supported")
 	}
 }
+
+func TestThemeSupport(t *testing.T) {
+	freeze := New()
+
+	// Test supported themes
+	themes := freeze.GetSupportedThemes()
+	if len(themes) == 0 {
+		t.Error("No supported themes found")
+	}
+
+	// Test common themes
+	commonThemes := []string{"github", "github-dark", "monokai", "dracula"}
+	for _, theme := range commonThemes {
+		if !freeze.IsThemeSupported(theme) {
+			t.Errorf("Theme %s should be supported", theme)
+		}
+	}
+
+	// Test unsupported theme
+	if freeze.IsThemeSupported("nonexistent-theme") {
+		t.Error("Nonexistent theme should not be supported")
+	}
+}
+
+func TestPresetSupport(t *testing.T) {
+	freeze := New()
+
+	// Test available presets
+	presets := freeze.GetAvailablePresets()
+	if len(presets) == 0 {
+		t.Error("No available presets found")
+	}
+
+	// Test common presets
+	commonPresets := []string{"base", "full", "terminal", "dark", "light"}
+	for _, preset := range commonPresets {
+		if !IsValidPreset(preset) {
+			t.Errorf("Preset %s should be valid", preset)
+		}
+	}
+
+	// Test invalid preset
+	if IsValidPreset("nonexistent-preset") {
+		t.Error("Nonexistent preset should not be valid")
+	}
+}
+
+func TestRegistry(t *testing.T) {
+	freeze := New()
+	registry := freeze.GetRegistry()
+
+	// Test popular languages
+	popularLangs := registry.GetPopularLanguages()
+	if len(popularLangs) == 0 {
+		t.Error("No popular languages found")
+	}
+
+	// Test popular themes
+	popularThemes := registry.GetPopularThemes()
+	if len(popularThemes) == 0 {
+		t.Error("No popular themes found")
+	}
+
+	// Test dark themes
+	darkThemes := registry.GetDarkThemes()
+	if len(darkThemes) == 0 {
+		t.Error("No dark themes found")
+	}
+
+	// Test light themes
+	lightThemes := registry.GetLightThemes()
+	if len(lightThemes) == 0 {
+		t.Error("No light themes found")
+	}
+
+	// Test statistics
+	stats := registry.GetStatistics()
+	if stats["Languages"] == 0 {
+		t.Error("Language count should be greater than 0")
+	}
+	if stats["Themes"] == 0 {
+		t.Error("Theme count should be greater than 0")
+	}
+	if stats["Presets"] == 0 {
+		t.Error("Preset count should be greater than 0")
+	}
+}

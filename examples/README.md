@@ -42,6 +42,19 @@ This directory contains comprehensive examples demonstrating various features of
 - Automated workflows
 - Bulk operations
 
+### [08-auto-language-detection/](08-auto-language-detection/) - Auto Language Detection
+- Content-based language detection
+- Filename-based detection
+- Custom detector configuration
+- Detection API usage
+
+### [09-supported-options/](09-supported-options/) - Supported Options
+- Get all supported languages list
+- Get all supported themes list
+- Get all available presets list
+- Validate language, theme, preset support
+- Simple and efficient API
+
 ## 🚀 Quick Start
 
 To run all examples:
@@ -54,53 +67,18 @@ go run run_all_examples.go
 To run specific category:
 
 ```bash
+# Basic usage
 cd examples/01-basic
 go run main.go
+
+# Auto language detection
+cd examples/08-auto-language-detection
+go run main.go
+
+# Supported options
+cd examples/09-supported-options
+go run main.go
 ```
-
-## 📊 Output Formats
-
-Each example category demonstrates:
-- **SVG**: Vector format, perfect for web and documentation
-- **PNG**: Raster format, ideal for presentations and social media
-- **Quality comparisons**: Different settings and their effects
-
-## 🎨 Visual Features Demonstrated
-
-- **Syntax Highlighting**: 100+ programming languages
-- **Themes**: Light, dark, and custom themes
-- **Window Decorations**: macOS-style window controls
-- **Line Numbers**: Optional line numbering
-- **Shadows and Borders**: Visual enhancement effects
-- **Custom Fonts**: Typography options
-- **ANSI Colors**: Terminal output rendering
-- **Responsive Sizing**: Adaptive dimensions
-
-## 📝 Code Examples Include
-
-- **Web Development**: HTML, CSS, JavaScript, TypeScript
-- **Backend**: Go, Python, Java, C#, Rust
-- **Mobile**: Swift, Kotlin, Dart
-- **DevOps**: Docker, YAML, Shell scripts
-- **Data**: SQL, JSON, CSV processing
-- **Documentation**: Markdown, configuration files
-
-## 🔧 Configuration Examples
-
-Each category includes examples of:
-- Basic configuration
-- Advanced customization
-- Performance optimization
-- Error handling
-- Best practices
-
-## 📖 Learning Path
-
-1. **Start with [01-basic/](01-basic/)** - Learn fundamental concepts
-2. **Explore [02-formats/](02-formats/)** - Understand output options
-3. **Try [03-themes/](03-themes/)** - Discover visual styles
-4. **Check [04-languages/](04-languages/)** - See language support
-5. **Advanced topics** - Dive into specialized use cases
 
 ## 🤝 Contributing Examples
 

@@ -6,6 +6,7 @@ import (
 
 	"github.com/alecthomas/chroma/v2"
 	"github.com/alecthomas/chroma/v2/lexers"
+	"github.com/alecthomas/chroma/v2/styles"
 )
 
 // LanguageDetector provides enhanced language detection capabilities
@@ -166,6 +167,21 @@ func (ld *LanguageDetector) RemoveCustomMapping(extension string) {
 // GetSupportedLanguages returns a list of all supported languages
 func (ld *LanguageDetector) GetSupportedLanguages() []string {
 	return lexers.Names(false) // false means don't include aliases
+}
+
+// GetSupportedThemes returns a list of all supported themes
+func (ld *LanguageDetector) GetSupportedThemes() []string {
+	var themes []string
+	for name := range styles.Registry {
+		themes = append(themes, name)
+	}
+	return themes
+}
+
+// IsThemeSupported checks if a theme is supported
+func (ld *LanguageDetector) IsThemeSupported(theme string) bool {
+	_, exists := styles.Registry[strings.ToLower(theme)]
+	return exists
 }
 
 // IsLanguageSupported checks if a language is supported

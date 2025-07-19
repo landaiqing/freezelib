@@ -10,6 +10,10 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
+
+	"github.com/alecthomas/chroma/v2/lexers"
+	"github.com/alecthomas/chroma/v2/styles"
 )
 
 // Freeze is the main interface for generating code screenshots
@@ -358,9 +362,11 @@ func (f *Freeze) DetectLanguageFromFile(filename, content string) string {
 	return f.generator.DetectLanguageFromFile(filename, content)
 }
 
-// GetSupportedLanguages returns a list of all supported languages
+// GetSupportedLanguages returns a sorted list of all supported programming languages
 func (f *Freeze) GetSupportedLanguages() []string {
-	return f.generator.GetSupportedLanguages()
+	languages := lexers.Names(false)
+	sort.Strings(languages)
+	return languages
 }
 
 // IsLanguageSupported checks if a language is supported
@@ -379,9 +385,57 @@ func (f *Freeze) GetLanguageDetector() *LanguageDetector {
 	return f.generator.GetLanguageDetector()
 }
 
+// GetSupportedThemes returns a sorted list of all supported themes
+func (f *Freeze) GetSupportedThemes() []string {
+	var themes []string
+	for name := range styles.Registry {
+		themes = append(themes, name)
+	}
+	sort.Strings(themes)
+	return themes
+}
+
+// IsThemeSupported checks if a theme is supported
+func (f *Freeze) IsThemeSupported(theme string) bool {
+	return f.generator.IsThemeSupported(theme)
+}
+
+// GetAvailablePresets returns a sorted list of all available presets
+func (f *Freeze) GetAvailablePresets() []string {
+	presets := ListPresets()
+	sort.Strings(presets)
+	return presets
+}
+
 // isPNGFile checks if the filename has a PNG extension
 func isPNGFile(filename string) bool {
 	return len(filename) > 4 && filename[len(filename)-4:] == ".png"
+}
+
+// Global convenience functions for accessing supported options
+
+// GetSupportedLanguages returns a sorted list of all supported programming languages
+func GetSupportedLanguages() []string {
+	languages := lexers.Names(false)
+	sort.Strings(languages)
+	return languages
+}
+
+// GetSupportedThemes returns a sorted list of all supported themes
+func GetSupportedThemes() []string {
+	var themes []string
+	for name := range styles.Registry {
+		themes = append(themes, name)
+	}
+	sort.Strings(themes)
+	return themes
+}
+
+// GetAvailablePresets returns a sorted list of all available presets
+func GetAvailablePresets() []string {
+	presets := ListPresets()
+	sort.Strings(presets)
+	return presets
 }
 
 // Version information

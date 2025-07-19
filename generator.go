@@ -120,6 +120,16 @@ func (g *Generator) GetLanguageDetector() *LanguageDetector {
 	return g.languageDetector
 }
 
+// GetSupportedThemes returns a list of all supported themes
+func (g *Generator) GetSupportedThemes() []string {
+	return g.languageDetector.GetSupportedThemes()
+}
+
+// IsThemeSupported checks if a theme is supported
+func (g *Generator) IsThemeSupported(theme string) bool {
+	return g.languageDetector.IsThemeSupported(theme)
+}
+
 // GenerateFromANSI generates an SVG from ANSI terminal output
 func (g *Generator) GenerateFromANSI(ansiOutput string) ([]byte, error) {
 	if err := g.config.Validate(); err != nil {

@@ -241,6 +241,23 @@ func (qf *QuickFreeze) IsLanguageSupported(language string) bool {
 	return generator.IsLanguageSupported(language)
 }
 
+// GetSupportedThemes returns a list of all supported themes
+func (qf *QuickFreeze) GetSupportedThemes() []string {
+	generator := NewGenerator(qf.config)
+	return generator.GetSupportedThemes()
+}
+
+// IsThemeSupported checks if a theme is supported
+func (qf *QuickFreeze) IsThemeSupported(theme string) bool {
+	generator := NewGenerator(qf.config)
+	return generator.IsThemeSupported(theme)
+}
+
+// GetAvailablePresets returns a list of all available presets
+func (qf *QuickFreeze) GetAvailablePresets() []string {
+	return GetAvailablePresets()
+}
+
 // FileToSVG generates SVG from a source code file
 func (qf *QuickFreeze) FileToSVG(filename string) ([]byte, error) {
 	generator := NewGenerator(qf.config)

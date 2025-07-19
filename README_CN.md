@@ -8,14 +8,16 @@ FreezeLib 是一个用于生成美观代码和终端输出截图的 Go 库。它
 
 ## 特性
 
-- 🎨 **语法高亮**: 支持 100+ 种编程语言
+- 🎨 **语法高亮**: 支持 270+ 种编程语言
+- 🔍 **自动语言检测**: 智能检测代码内容和文件名的语言
+- 📋 **简单列表**: 轻松访问所有可用的语言、主题和预设
 - 🖼️ **多种输出格式**: 生成 SVG 和 PNG 图像
-- 🎭 **丰富主题**: 内置主题包括 GitHub、Dracula、Monokai 等
+- 🎭 **丰富主题**: 67+ 内置主题，包括 GitHub、Dracula、Monokai 等
 - 🪟 **窗口控件**: macOS 风格的窗口装饰
 - 📏 **行号**: 可选的行号显示
 - 🌈 **ANSI 支持**: 渲染彩色终端输出
 - ⚡ **简易 API**: 简单且可链式调用的 API 设计
-- 🎯 **预设配置**: 常见用例的预配置样式
+- 🎯 **预设配置**: 10 种预配置样式，适用于常见用例
 - 🔧 **高度可定制**: 精细调整输出的每个方面
 
 ## 安装
@@ -60,6 +62,50 @@ func main() {
 }
 ```
 
+### 自动语言检测
+
+FreezeLib 可以自动检测编程语言：
+
+```go
+freeze := freezelib.New()
+
+// 从代码内容自动检测语言
+svgData, err := freeze.GenerateFromCodeAuto(code)
+
+// 手动检测语言
+language := freeze.DetectLanguage(code)
+fmt.Printf("检测到的语言: %s", language)
+
+// 从文件名检测语言
+language = freeze.DetectLanguageFromFilename("script.py")
+
+// 组合检测（文件名 + 内容）
+language = freeze.DetectLanguageFromFile("script.py", code)
+```
+
+### 可用选项
+
+获取所有可用选项的列表：
+
+```go
+freeze := freezelib.New()
+
+// 获取所有可用选项（排序列表）
+languages := freeze.GetSupportedLanguages()  // 270+ 种语言
+themes := freeze.GetSupportedThemes()        // 67+ 种主题
+presets := freeze.GetAvailablePresets()      // 10 种预设
+
+// 测试支持
+isSupported := freeze.IsLanguageSupported("go")
+isSupported = freeze.IsThemeSupported("github")
+isValid := freezelib.IsValidPreset("dark")
+
+// 全局函数也可用
+languages = freezelib.GetSupportedLanguages()
+themes = freezelib.GetSupportedThemes()
+presets = freezelib.GetAvailablePresets()
+```
+
 ### QuickFreeze API
 
 为了更流畅的体验，使用 QuickFreeze API：
@@ -72,7 +118,7 @@ svgData, err := qf.WithTheme("dracula").
     WithWindow().
     WithShadow().
     WithLineNumbers().
-    CodeToSVG(code)
+    CodeToSVGAuto(code) // 自动检测语言
 ```
 
 ## API 参考
@@ -104,6 +150,10 @@ qf := freezelib.NewQuickFreezeWithPreset("terminal")
 ```go
 svgData, err := freeze.GenerateFromCode(code, "python")
 pngData, err := freeze.GeneratePNGFromCode(code, "python")
+
+// 使用自动语言检测
+svgData, err := freeze.GenerateFromCodeAuto(code)
+pngData, err := freeze.GeneratePNGFromCodeAuto(code)
 ```
 
 #### 从文件
@@ -153,18 +203,18 @@ config.SetLines(10, 20)         // 行范围（1-indexed）
 FreezeLib 提供了几个内置预设：
 
 ```go
-// 可用预设
+// 可用预设（10 种）
 presets := []string{
-    "base",         // 简洁干净
-    "full",         // macOS 风格窗口控件
-    "terminal",     // 终端输出优化
-    "presentation", // 演示高对比度
-    "minimal",      // 极简样式
+    "base",         // 基础配置
+    "full",         // 完整功能配置
+    "terminal",     // 终端风格
     "dark",         // 深色主题
     "light",        // 浅色主题
-    "retro",        // 复古终端风格
-    "neon",         // 霓虹/赛博朋克风格
-    "compact",      // 小代码片段紧凑型
+    "minimal",      // 极简风格
+    "professional", // 专业风格
+    "vibrant",      // 鲜艳配色
+    "retro",        // 复古风格
+    "neon",         // 霓虹风格
 }
 
 freeze := freezelib.NewWithPreset("dark")
@@ -186,6 +236,18 @@ svgData, err := freeze.GenerateFromCode(code, "rust")
 ```
 
 ## 示例
+
+查看 `examples/` 目录获取完整示例：
+
+- `01-basic/` - 基础用法示例
+- `02-formats/` - 输出格式示例
+- `03-themes/` - 主题展示
+- `04-languages/` - 语言支持示例
+- `05-terminal/` - 终端输出示例
+- `06-advanced/` - 高级配置
+- `07-batch/` - 批量处理
+- `08-auto-language-detection/` - 自动语言检测
+- `09-supported-options/` - 支持选项列表
 
 ### 终端输出截图
 
@@ -235,27 +297,115 @@ for _, file := range files {
 
 ## 支持的语言
 
-FreezeLib 支持 100+ 种编程语言的语法高亮，包括：
+FreezeLib 支持 270+ 种编程语言的语法高亮：
 
-- Go, Rust, Python, JavaScript, TypeScript
-- C, C++, C#, Java, Kotlin, Swift
-- HTML, CSS, SCSS, JSON, YAML, XML
-- Shell, PowerShell, Dockerfile
-- SQL, GraphQL, Markdown
-- 等等...
+### 热门语言
+- **系统级**: Go, Rust, C, C++, Zig, D, Nim, V
+- **Web**: JavaScript, TypeScript, HTML, CSS, SCSS, PHP
+- **企业级**: Java, C#, Kotlin, Scala, Swift
+- **脚本**: Python, Ruby, Perl, Lua, Bash, PowerShell
+- **数据**: JSON, YAML, TOML, XML, SQL, GraphQL
+
+### 分类
+- **热门** (30): 最常用的语言
+- **Web** (15): 前端和后端 Web 技术
+- **系统** (13): 底层和系统编程
+- **脚本** (12): 自动化和脚本语言
+- **数据** (11): 配置和数据格式
+- **更多**: 总共支持 270+ 种语言
 
 ## 支持的主题
 
-流行主题包括：
-- `github` / `github-dark`
-- `dracula`
-- `monokai`
-- `solarized-dark` / `solarized-light`
-- `nord`
-- `one-dark`
-- `material`
-- `vim`
-- 等等...
+FreezeLib 包含 67+ 种语法高亮主题：
+
+### 热门主题
+- **GitHub**: `github`, `github-dark`
+- **现代**: `dracula`, `monokai`, `nord`, `one-dark`
+- **经典**: `solarized-dark`, `solarized-light`, `material`, `vim`
+- **多彩**: `colorful`, `friendly`, `fruity`, `rainbow_dash`
+
+### 分类
+- **热门** (30): 最常用的主题
+- **深色** (10): 适合低光环境的深色配色方案
+- **浅色** (14): 适合明亮环境的浅色配色方案
+- **更多**: 总共 67+ 种主题可用
+
+### 简单高效
+所有列表都按字母顺序排序，便于浏览和选择。
+
+## 语言检测功能
+
+### 自动检测方法
+```go
+freeze := freezelib.New()
+
+// 从代码内容检测语言
+language := freeze.DetectLanguage(code)
+
+// 从文件名检测
+language = freeze.DetectLanguageFromFilename("script.py")
+
+// 组合检测（文件名 + 内容）
+language = freeze.DetectLanguageFromFile("script.py", code)
+
+// 检查语言支持
+supported := freeze.IsLanguageSupported("go")
+
+// 获取所有支持的语言
+languages := freeze.GetSupportedLanguages()
+```
+
+### 自定义语言检测器
+```go
+detector := freeze.GetLanguageDetector()
+
+// 添加自定义文件扩展名映射
+detector.AddCustomMapping(".myext", "python")
+detector.AddCustomMapping(".config", "json")
+
+// 配置检测策略
+detector.EnableContentAnalysis = true
+detector.EnableFilenameAnalysis = true
+detector.FallbackLanguage = "text"
+```
+
+## 支持选项
+
+### 获取所有可用选项
+```go
+freeze := freezelib.New()
+
+// 获取所有可用选项（排序列表）
+languages := freeze.GetSupportedLanguages()  // 270+ 种语言
+themes := freeze.GetSupportedThemes()        // 67+ 种主题
+presets := freeze.GetAvailablePresets()      // 10 种预设
+
+// 测试支持
+isSupported := freeze.IsLanguageSupported("go")
+isSupported = freeze.IsThemeSupported("github")
+isValid := freezelib.IsValidPreset("dark")
+
+// 全局函数也可用
+languages = freezelib.GetSupportedLanguages()
+themes = freezelib.GetSupportedThemes()
+presets = freezelib.GetAvailablePresets()
+```
+
+### 验证支持
+```go
+// 检查支持
+if freeze.IsLanguageSupported("go") {
+    // 生成 Go 代码截图
+}
+
+if freeze.IsThemeSupported("dracula") {
+    // 使用 Dracula 主题
+}
+
+if freezelib.IsValidPreset("dark") {
+    // 使用深色预设
+}
+```
 
 ## 错误处理
 
